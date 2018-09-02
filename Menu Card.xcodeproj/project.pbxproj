@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A3C7DB5213AD37300E1DC6D /* ARNAV.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2A3C7DB4213AC93A00E1DC6D /* ARNAV.mp4 */; };
 		2ACC30C3213694F500734802 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC30C2213694F500734802 /* AppDelegate.swift */; };
 		2ACC30C5213694F500734802 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ACC30C4213694F500734802 /* art.scnassets */; };
 		2ACC30C7213694F500734802 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC30C6213694F500734802 /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A3C7DB4213AC93A00E1DC6D /* ARNAV.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARNAV.mp4; sourceTree = "<group>"; };
 		2ACC30BF213694F500734802 /* Menu Card.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Menu Card.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ACC30C2213694F500734802 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2ACC30C4213694F500734802 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 		2ACC30C1213694F500734802 /* Menu Card */ = {
 			isa = PBXGroup;
 			children = (
+				2A3C7DB4213AC93A00E1DC6D /* ARNAV.mp4 */,
 				2ACC30C2213694F500734802 /* AppDelegate.swift */,
 				2ACC30C4213694F500734802 /* art.scnassets */,
 				2ACC30C6213694F500734802 /* ViewController.swift */,
@@ -232,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3C7DB5213AD37300E1DC6D /* ARNAV.mp4 in Resources */,
 				2ACC30C5213694F500734802 /* art.scnassets in Resources */,
 				2ACC30CF213694F900734802 /* LaunchScreen.storyboard in Resources */,
 				2ACC30CC213694F900734802 /* Assets.xcassets in Resources */,
@@ -443,7 +447,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.orange.Menu-Card";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orange.MenuCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -461,7 +465,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.orange.Menu-Card";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orange.MenuCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
