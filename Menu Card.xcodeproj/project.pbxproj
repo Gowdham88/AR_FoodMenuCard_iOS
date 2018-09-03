@@ -16,6 +16,7 @@
 		2ACC30CF213694F900734802 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACC30CD213694F900734802 /* LaunchScreen.storyboard */; };
 		2ACC30DA213694FA00734802 /* Menu_CardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC30D9213694FA00734802 /* Menu_CardTests.swift */; };
 		2ACC30E5213694FA00734802 /* Menu_CardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC30E4213694FA00734802 /* Menu_CardUITests.swift */; };
+		2AECAA02213D308E00787415 /* ARNAV5.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 2AECAA01213D308600787415 /* ARNAV5.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		2ACC30E0213694FA00734802 /* Menu CardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Menu CardUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ACC30E4213694FA00734802 /* Menu_CardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_CardUITests.swift; sourceTree = "<group>"; };
 		2ACC30E6213694FA00734802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AECAA01213D308600787415 /* ARNAV5.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARNAV5.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				2A3C7DB4213AC93A00E1DC6D /* ARNAV.mp4 */,
+				2AECAA01213D308600787415 /* ARNAV5.mp4 */,
 				2ACC30C2213694F500734802 /* AppDelegate.swift */,
 				2ACC30C4213694F500734802 /* art.scnassets */,
 				2ACC30C6213694F500734802 /* ViewController.swift */,
@@ -235,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AECAA02213D308E00787415 /* ARNAV5.mp4 in Resources */,
 				2A3C7DB5213AD37300E1DC6D /* ARNAV.mp4 in Resources */,
 				2ACC30C5213694F500734802 /* art.scnassets in Resources */,
 				2ACC30CF213694F900734802 /* LaunchScreen.storyboard in Resources */,
