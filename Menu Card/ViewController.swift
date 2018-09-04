@@ -23,7 +23,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     var cake_1_PlaneNode : SCNNode? = nil
     var detectedImageNode: SCNNode?
     var planeBool: Bool = true
-
+ var videoPlayer = AVPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -362,8 +362,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         //1. Create An SKVideoNode
         var videoPlayerNode: SKVideoNode!
         
+       
         //2. Create An AVPlayer With Our Video URL
-        let videoPlayer = AVPlayer(url: url)
+         videoPlayer = AVPlayer(url: url)
         
         //3. Intialize The Video Node With Our Video Player
         videoPlayerNode = SKVideoNode(avPlayer: videoPlayer)
@@ -383,6 +384,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         videoPlayerNode.play()
         
         videoPlayer.volume = 0
+        
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                               
+                                               object: videoPlayer.currentItem, queue: nil)
+            
+        { notification in
+            
+            self.videoPlayer.seek(to: CMTime.zero)
+            
+            self.videoPlayer.play()
+            
+            print("reset Video")
+            
+        }
         
     }
     
@@ -426,7 +441,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         
     }
 
-    
+   
     
 }//class
 
