@@ -5,6 +5,7 @@
 //  Created by Paramesh V on 29/08/18.
 //  Copyright © 2018 Paramesh V. All rights reserved.
 //
+//
 
 import UIKit
 import SceneKit
@@ -20,7 +21,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     var targetAnchor: ARImageAnchor?
 //    var cake_1_PlaneNode: SCNNode?
     var cake_1_PlaneNode : SCNNode? = nil
-
+    var detectedImageNode: SCNNode?
+    var planeBool: Bool = true
+ var videoPlayer = AVPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,9 +111,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
 
                 //raspberry
                 //cake 1
-                
-              
-                
+  
                 
                     let cake_1_Plane = SCNPlane(width: 0.045, height: 0.045)
                     cake_1_Plane.firstMaterial?.diffuse.contents = UIImage(named: "france")
@@ -121,7 +122,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                     
                     cake_1_PlaneNode.eulerAngles.x = -.pi/2
                     cake_1_PlaneNode.position = SCNVector3(0.15, 0, -0.12)
-                    cake_1_PlaneNode.name = "yummyCake"
+                    cake_1_PlaneNode.name = "Strawberry Cake"
                     cake_1_PlaneNode.runAction(SCNAction.rotateBy(x: 0, y: 0, z: rotationAsRadian, duration: 0.75))
              
                     
@@ -134,14 +135,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                         cakeStar_1_PlaneNode.position = SCNVector3(0.05, 0, -0.07)
 
                         cakeStar_1_PlaneNode.runAction(SCNAction.moveBy(x: 0.102, y: 0, z: 0, duration: 1.5))
-
                         node.addChildNode(cakeStar_1_PlaneNode)
 
-                    
-                    
-                    
-                
-
+        
 
                 //Dessert cake
                 //cake2
@@ -203,7 +199,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                 }
                 
          
-                cake_1()
+                
                 //plane
                 node.addChildNode(planeNodee)
                 //cake1
@@ -235,12 +231,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                 
                 DispatchQueue.main.async {
                     
-//                    let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: 640, height: 480))
-//                    let request = URLRequest(url: URL(string: "http://www.czsm.co.in")!)
-//
-//                    webView.load(request)
-
-            
                     let webView = UIWebView(frame: CGRect(x: 0, y: 0, width: 554, height: 800))
                     let request = URLRequest(url: URL(string: "http://www.czsm.co.in")!)
 
@@ -255,39 +245,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                     
                     let tvPlaneNode = SCNNode(geometry: tvPlane)
                     tvPlaneNode.eulerAngles.x = -.pi/2
-                    tvPlaneNode.position = SCNVector3(0.145, 0, 0.0)
+                    tvPlaneNode.position = SCNVector3(0.150, 0, 0.0)
                     
                     
                     
                     //video
-                    
-//                    let videoNode = SKVideoNode(fileNamed: "ARNAV.mp4")
-//                    videoNode.play()
-//
-//                    let skScene = SKScene(size: CGSize(width: 375, height: 220))
-//                    skScene.addChild(videoNode)
-//
-//                    videoNode.position = CGPoint(x: skScene.size.width/2, y: skScene.size.height/2)
-//                    videoNode.size = skScene.size
-//
-//                    let tvPlanevideo = SCNPlane(width: 0.08, height: 0.05)
-//                    tvPlanevideo.firstMaterial?.diffuse.contents = skScene
-//                    tvPlanevideo.firstMaterial?.isDoubleSided = true
-//
-//                    let tvPlanevideoNode = SCNNode(geometry: tvPlanevideo)
-//                    tvPlanevideoNode.eulerAngles.x = -.pi/2
-//                    tvPlanevideoNode.position = SCNVector3(-0.05, 0, 0.0)
-                    
+
+//                    let BGVideoHolder = SCNNode()
+//                    let BGVideoHolderPlane = SCNPlane(width: 0.045, height: 0.08)
+//                    BGVideoHolderPlane.firstMaterial?.diffuse.contents = UIColor.black.cgColor
+////                    BGVideoHolder.position = SCNVector3(0, 0, -0.001)
+//                    BGVideoHolder.geometry = BGVideoHolderPlane
                     
                     let videoHolder = SCNNode()
-                    let videoHolderGeometry = SCNPlane(width: 0.05, height: 0.08)
+                    let videoHolderGeometry = SCNPlane(width: 0.055, height: 0.1)
                     videoHolder.transform = SCNMatrix4MakeRotation(-Float.pi / 2, 1, 0, 0)
+                    videoHolder.position = SCNVector3(-0.025, 0.0, 0)
                     videoHolder.geometry = videoHolderGeometry
-//
+
                     //4. Create Our Video Player
-//                    let videoURL = Bundle.main.path(forResource: "ARNAV", withExtension: "mp4")
-                    guard let path = Bundle.main.path(forResource: "ARNAV", ofType:"mp4") else {
-                        debugPrint("video.m4v not found")
+                    guard let path = Bundle.main.path(forResource: "ARNAV5", ofType: "mp4") else {
+                        debugPrint("video.mp4 not found")
                         return
                     }
                    
@@ -295,10 +273,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                     self.setupVideoOnNode(videoHolder, fromURL: URL(fileURLWithPath: path))
                     
 
-              
-
                     node.addChildNode(tvPlaneNode)
-//                    node.addChildNode(tvPlanevideoNode)
+//                    videoHolder.addChildNode(BGVideoHolder)
                     node.addChildNode(videoHolder)
                     self.sceneView.scene.rootNode.addChildNode(node)
                 }
@@ -306,7 +282,67 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
                 
             } else if imageName == "Brochure_Back" {
                 
+                // Check To See The Detected Size Of Our menu Card (Should By 5cm*3cm)
+                let B_FrontWidth = imageAnchor.referenceImage.physicalSize.width
+                let B_BackHeight =  imageAnchor.referenceImage.physicalSize.height
                 
+                print(
+                    """
+                    We Have Detected menu Card With Name \(imageName)
+                    \(imageName)'s Width Is \(B_FrontWidth)
+                    \(imageName)'s Height Is \(B_BackHeight)
+                    """)
+                
+                
+                DispatchQueue.main.async {
+                    
+                    let webView = UIWebView(frame: CGRect(x: 0, y: 0, width: 554, height: 800))
+                    let request = URLRequest(url: URL(string: "http://www.czsm.co.in")!)
+                    
+                    webView.delegate = self
+                    webView.allowsInlineMediaPlayback = true
+                    webView.allowsPictureInPictureMediaPlayback = true
+                    webView.loadRequest(request)
+                    
+                    let tvPlane = SCNPlane(width: B_FrontWidth, height: B_BackHeight)
+                    tvPlane.firstMaterial?.diffuse.contents = webView
+                    tvPlane.firstMaterial?.isDoubleSided = true
+                    
+                    let tvPlaneNode = SCNNode(geometry: tvPlane)
+                    tvPlaneNode.eulerAngles.x = -.pi/2
+                    tvPlaneNode.position = SCNVector3(0.150, 0, 0.0)
+                    
+                    
+                    
+                    //video
+                    
+//                    let BGVideoHolder = SCNNode()
+//                    let BGVideoHolderPlane = SCNPlane(width: 0.07, height: 0.13)
+//                    BGVideoHolderPlane.firstMaterial?.diffuse.contents = UIColor.black.cgColor
+//                    BGVideoHolder.position = SCNVector3(0, 0, -0.001)
+//                    BGVideoHolder.geometry = BGVideoHolderPlane
+                    
+                    let videoHolder = SCNNode()
+                    let videoHolderGeometry = SCNPlane(width: 0.055, height: 0.09)
+                    videoHolder.transform = SCNMatrix4MakeRotation(-Float.pi / 2, 1, 0, 0)
+//                    videoHolder.position = SCNVector3(-0.025, -0.12, 0)
+                    videoHolder.geometry = videoHolderGeometry
+                    
+                    //4. Create Our Video Player
+                    guard let path = Bundle.main.path(forResource: "ARNAV5", ofType:"mp4") else {
+                        debugPrint("video.mp4 not found")
+                        return
+                    }
+                    
+                    print("videoURL::\(String(describing: path))")
+                    self.setupVideoOnNode(videoHolder, fromURL: URL(fileURLWithPath: path))
+                    
+                    
+                    node.addChildNode(tvPlaneNode)
+//                    node.addChildNode(BGVideoHolder)
+                    node.addChildNode(videoHolder)
+                    self.sceneView.scene.rootNode.addChildNode(node)
+                }
                 
             }
             
@@ -326,8 +362,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         //1. Create An SKVideoNode
         var videoPlayerNode: SKVideoNode!
         
+       
         //2. Create An AVPlayer With Our Video URL
-        let videoPlayer = AVPlayer(url: url)
+         videoPlayer = AVPlayer(url: url)
         
         //3. Intialize The Video Node With Our Video Player
         videoPlayerNode = SKVideoNode(avPlayer: videoPlayer)
@@ -348,42 +385,63 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         
         videoPlayer.volume = 0
         
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                               
+                                               object: videoPlayer.currentItem, queue: nil)
+            
+        { notification in
+            
+            self.videoPlayer.seek(to: CMTime.zero)
+            
+            self.videoPlayer.play()
+            
+            print("reset Video")
+            
+        }
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-        let touch = touches.first as! UITouch
-        if(touch.view == self.sceneView){
-            //            print("touch working")
-            let viewTouchLocation:CGPoint = touch.location(in: sceneView)
-            guard let result = sceneView.hitTest(viewTouchLocation, options: nil).first else {
-                return
-            }
-
-            if let planeNode = result.node as SCNNode?, planeNode.name == "yummyCake" {
-
-
-                print("I'm gonna eat you!")
-         
-
-
+        
+        //1. Get The Current Touch Location & Perform An ARSCNHitTest To Check For Any Hit SCNNode's
+        guard let currentTouchLocation = touches.first?.location(in: self.sceneView),
+            let hitTestNode = self.sceneView.hitTest(currentTouchLocation, options: nil).first?.node else { return }
+        
+        //2. If We Have Hit Our Strawberry Cake Then We Call Our makeCakeOnNode Function
+        if let cakeID = hitTestNode.name {
+            print("touch working")
+            if cakeID == "Strawberry Cake"{
+//               makeCakeOnNode(hitTestNode)
             }
         }
     }
     
 
-    func cake_1() {
+    func makeCakeOnNode(_ node: SCNNode){
         
-        let plane = SCNPlane(width: 3.5  , height: 3.5)
-        plane.firstMaterial?.diffuse.contents = UIColor.black.withAlphaComponent(1.0)
-        let planeNodee = SCNNode(geometry: plane)
-        planeNodee.eulerAngles.x = -.pi/2
-        planeNodee.position = SCNVector3(0, 0, 0)
-        //        planeNodee.runAction(SCNAction.moveBy(x: 0, y: 0, z: 0, duration: 0))
-        self.sceneView.scene.rootNode.addChildNode(planeNodee)
+        let planeGeometry = SCNPlane(width: 0.1  , height: 0.05)
+        planeGeometry.firstMaterial?.diffuse.contents = UIColor.black.withAlphaComponent(0.75)
         
-    }//cake_1
-    
+        let planeNode = SCNNode(geometry: planeGeometry)
+        planeNode.position = SCNVector3(0.13, 0, -0.2)
+//        planeNode.runAction(SCNAction.moveBy(x: 0.13, y: 0, z: 0.0, duration: 0))
+        
+        if planeBool == true {
+             node.addChildNode(planeNode)
+            planeBool = false
+            
+        } else {
+            
+            print("plane removed")
+//            node.removeFromParentNode()
+            
+            planeBool = true
+        }
+       
+        
+    }
+
+   
     
 }//class
 
